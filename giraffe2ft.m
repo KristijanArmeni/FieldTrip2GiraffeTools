@@ -57,10 +57,15 @@ for j = 1:length(filenames)
     nodes{j} = node;
 end
 
+toolbox = [];
+ft = [];
+ft.name = categoryName;
+ft.nodes = nodes;
+
 %%
 f = fopen(fullfile(saveLocation, 'fieldtrip.JSON'), 'w');
 options.ParseLogical = true;
-fwrite(f, savejson('nodes', nodes, options));
+fwrite(f, savejson('toolboxes', {ft}, options));
 fclose(f);
 
 
