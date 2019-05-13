@@ -1,29 +1,39 @@
 
-%% Node Files
-toolboxLocation = '/home/common/matlab/fieldtrip';
 
-saveLocation = '~/project/giraffe2ft/'; 
+%% Execute this script (not just this block) to 
+rootDirectory = mfilename('fullpath');
+rootDirectory = rootDirectory(1:end - length(mfilename()));
+cd(rootDirectory);
+rootDirectory = pwd();
+
+%%
+toolboxLocation = '/home/common/matlab/fieldtrip';
+saveLocation = fullfile(rootDirectory, 'GIRAFFE'); 
 
 %
 categoryName = 'fieldtrip';
 filenames = dir(fullfile(toolboxLocation, 'ft_*.m'));
 filenames = filenames(~[filenames(:).isdir]);
 
-nF = 1;
-nodes = [];
+nodes = cell(1, length(filenames));
 for j = 1:length(filenames)
 
+    node = [];
     file = fullfile(toolboxLocation, filenames(j).name);
     f = fopen(file);
     numberOfPorts = 0;
     ports = [];
     while true
+        
         line = fgetl(f);
-        if strfind(line, '%') ~= 1  
-            break;
+        if line == -1
+            break
+        end
+        
+        if strfind(line, '%') ~= 1
+            continue;
         end
         if strfind(line, '%   cfg.') == 1
-            disp(line)
 %             numberOfPorts = numberOfPorts + 1;
 %             ports(numberOfPorts).input = true;
 %             ports(numberOfPorts).output = true;
@@ -37,20 +47,14 @@ for j = 1:length(filenames)
         end
     end
     fclose(f);
-    title = [];
-%     title.web_url = ['https://github.com/TimVanMourik/OpenFmriAnalysis/tree/master/Interface/', filenames(j).name];
-%     title.name = filenames(j).name(1:end - 2);
-    title.code = [];
-    code = [];
-    code.language = categoryName;
-    code.comment  = '';
-%     code.argument.name = filenames(j).name(1:end - 2);
-    title.code = {code};
-%     nodes(nF).category = {categoryName, filenames(i).name};
-%     nodes(nF).title = title;
-%     nodes(nF).ports = ports;
+    node.toolbox = categoryName;
+    node.category = {categoryName};
+    node.name = filenames(j).name(1:end - 2);
+    node.code = {code};
+    node.web_url = ['https://github.com/fieldtrip/fieldtrip/tree/master/' node.name '.m'];
+    node.ports = ports;
 
-    nF = nF + 1;
+    nodes{j} = node;
 end
 
 %%
