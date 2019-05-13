@@ -4,4 +4,4 @@ tools:
     file:
       - GIRAFFE/fieldtrip.pork
     nodes:
-      - GIRAFFE/tvm_nodes.json
+      - GIRAFFE/fieldtrip.json
