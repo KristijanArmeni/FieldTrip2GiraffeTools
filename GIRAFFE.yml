@@ -1,0 +1,7 @@
+# list of tools
+tools:
+  porcupine:
+    file:
+      - GIRAFFE/fieldtrip.pork
+    nodes:
+      - GIRAFFE/tvm_nodes.json

@@ -58,7 +58,7 @@ for j = 1:length(filenames)
 end
 
 %%
-f = fopen(fullfile(saveLocation, 'tvm.JSON'), 'w');
+f = fopen(fullfile(saveLocation, 'fieldtrip.JSON'), 'w');
 options.ParseLogical = true;
 fwrite(f, savejson('nodes', nodes, options));
 fclose(f);
