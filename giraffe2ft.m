@@ -34,16 +34,16 @@ for j = 1:length(filenames)
             continue;
         end
         if strfind(line, '%   cfg.') == 1
-%             numberOfPorts = numberOfPorts + 1;
-%             ports(numberOfPorts).input = true;
-%             ports(numberOfPorts).output = true;
-%             ports(numberOfPorts).visible = true;
-%             ports(numberOfPorts).editable = true;
-%             ports(numberOfPorts).name = line(5:end);
-%             code = [];
-%             code.language = categoryName;
-%             code.argument.name = line(5:end);
-%             ports(numberOfPorts).code = {code};
+             numberOfPorts = numberOfPorts + 1;
+             ports(numberOfPorts).input = true;
+             ports(numberOfPorts).output = true;
+             ports(numberOfPorts).visible = true;
+             ports(numberOfPorts).editable = true;
+             ports(numberOfPorts).name = line(5:end);
+             code = [];
+             code.language = categoryName;
+             code.argument.name = line(5:end);
+             ports(numberOfPorts).code = {code};
         end
     end
     fclose(f);
