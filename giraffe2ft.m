@@ -39,7 +39,12 @@ for j = 1:length(filenames)
              ports(numberOfPorts).output = true;
              ports(numberOfPorts).visible = true;
              ports(numberOfPorts).editable = true;
-             ports(numberOfPorts).name = line(5:end);
+            
+             template = '%%  cfg.%s = %s';
+             parsed = textscan(line, template);
+             [parameter, comment] = deal(parsed{:});
+             ports(numberOfPorts).name = parameter{1};
+            
              code = [];
              code.language = categoryName;
              code.argument.name = line(5:end);
@@ -65,6 +70,7 @@ ft.nodes = nodes;
 %%
 f = fopen(fullfile(saveLocation, 'fieldtrip.JSON'), 'w');
 options.ParseLogical = true;
+% options.Compact = true;
 fwrite(f, savejson('toolboxes', {ft}, options));
 fclose(f);
 
