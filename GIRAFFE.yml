@@ -6,4 +6,6 @@ tools:
     nodes:
       - GIRAFFE/fieldtrip.JSON
     grammars:
-      - GIRAFFE/fieldtrip.js
+      - language: fieldtrip
+        script: GIRAFFE/fieldtrip.js
+        format: matlab
