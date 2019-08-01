@@ -2,7 +2,7 @@ module.exports = () => {
     const LANGUAGE = 'Fieldtrip';
 
     const writeCode = () => "Fieldtrip test code"
-    const writeCode = () => {
+    const writeFiles = () => {
         const fieldtripFilename = 'GIRAFFE/code/Dockerfile';
         return {
             [fieldtripFilename]: await writeCode(nodes),
