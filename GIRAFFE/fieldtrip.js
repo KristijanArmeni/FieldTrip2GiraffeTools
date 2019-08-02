@@ -14,7 +14,10 @@ module.exports = () => {
       let code = "";
       code += "cfg = [];" + newline;
       // #TODO add in parameters
-      code += node.parameters.map(parameter => parameterToCode(parameter)).join(newline);
+      code += node.parameters
+        .filter(parameter => parameter.value !== undefined && parameter.value !== "")
+        .map(parameter => parameterToCode(parameter))
+        .join(newline);
       code += `${node.name}(cfg);` + newline;
 
       return code;
