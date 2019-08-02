@@ -5,3 +5,7 @@ tools:
       - GIRAFFE/fieldtrip.pork
     nodes:
       - GIRAFFE/fieldtrip.JSON
+    grammars:
+      - language: fieldtrip
+        script: GIRAFFE/fieldtrip.js
+        format: matlab

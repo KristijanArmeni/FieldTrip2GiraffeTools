@@ -1,0 +1,175 @@
+{
+  "links": [],
+  "nodes": [
+    {
+      "id": "d045f61e-48f9-471a-bff8-3efdd3686ada",
+      "name": "ft_anonymizedata",
+      "class": "ft_anonymizedata",
+      "ports": [
+        {
+          "base": "keepnumeric",
+          "code": [
+            {
+              "language": "fieldtrip",
+              "argument": {
+                "name": "cfg.keepnumeric = 'yes' or 'no', keep numeric fields (default = 'yes')"
+              }
+            }
+          ],
+          "editable": true,
+          "id": "8343be96-c1e4-42a8-9e32-faea707aa6c6",
+          "input": true,
+          "inputPort": "3ef39e6c-407c-4707-a682-6984b0ee1a80",
+          "name": "keepnumeric",
+          "output": true,
+          "outputPort": "76f9fbeb-1bce-4b74-a24f-3c8fe9b48c65",
+          "value": "",
+          "visible": true,
+          "iterator": false
+        },
+        {
+          "base": "keepfield",
+          "code": [
+            {
+              "language": "fieldtrip",
+              "argument": {
+                "name": "cfg.keepfield   = cell-array with strings, fields to keep (default = {})"
+              }
+            }
+          ],
+          "editable": true,
+          "id": "2c8b45f0-ff42-488d-bfb3-22ba582f7ea3",
+          "input": true,
+          "inputPort": "5fe123dd-fecc-4aa4-b688-5a2a26a25aed",
+          "name": "keepfield",
+          "output": true,
+          "outputPort": "953961dd-cb48-4f8a-865e-faaff1d5a1cb",
+          "value": "",
+          "visible": true,
+          "iterator": false
+        },
+        {
+          "base": "removefield",
+          "code": [
+            {
+              "language": "fieldtrip",
+              "argument": {
+                "name": "cfg.removefield = cell-array with strings, fields to remove (default = {})"
+              }
+            }
+          ],
+          "editable": true,
+          "id": "dd1b6926-168f-4049-adfb-d1b7e154b8b6",
+          "input": true,
+          "inputPort": "0a3e209d-d684-4c0c-b369-c30d91edf0c6",
+          "name": "removefield",
+          "output": true,
+          "outputPort": "21a592b3-e24e-4251-9a42-d63455532171",
+          "value": "",
+          "visible": true,
+          "iterator": false
+        },
+        {
+          "base": "keepvalue",
+          "code": [
+            {
+              "language": "fieldtrip",
+              "argument": {
+                "name": "cfg.keepvalue   = cell-array with strings, values to keep (default = {})"
+              }
+            }
+          ],
+          "editable": true,
+          "id": "d2055d7a-1ad7-45ae-89ed-20239ce757c8",
+          "input": true,
+          "inputPort": "5432c065-4005-4d93-a926-a6c0871649ab",
+          "name": "keepvalue",
+          "output": true,
+          "outputPort": "07d9fca9-8756-4a16-8b64-b0be91b7d6f1",
+          "value": "",
+          "visible": true,
+          "iterator": false
+        },
+        {
+          "base": "removevalue",
+          "code": [
+            {
+              "language": "fieldtrip",
+              "argument": {
+                "name": "cfg.removevalue = cell-array with strings, values to remove (default = {})"
+              }
+            }
+          ],
+          "editable": true,
+          "id": "e25753c0-dad3-4fc1-ad77-1b7b5b438f2b",
+          "input": true,
+          "inputPort": "579e9b1b-4407-4c05-8bd9-515c48079e19",
+          "name": "removevalue",
+          "output": true,
+          "outputPort": "c6ca41e1-e54d-4d20-83e2-0d0846be2ca2",
+          "value": "",
+          "visible": true,
+          "iterator": false
+        },
+        {
+          "base": "inputfile",
+          "code": [
+            {
+              "language": "fieldtrip",
+              "argument": {
+                "name": "cfg.inputfile  = ..."
+              }
+            }
+          ],
+          "editable": true,
+          "id": "d2ed6c58-d064-4cb3-999d-ee738e5cade6",
+          "input": true,
+          "inputPort": "665b81bc-8b12-4293-9530-c7e6cf7e5600",
+          "name": "inputfile",
+          "output": true,
+          "outputPort": "cee8930a-a779-4782-a4a3-1f641d05cd30",
+          "value": "",
+          "visible": true,
+          "iterator": false
+        },
+        {
+          "base": "outputfile",
+          "code": [
+            {
+              "language": "fieldtrip",
+              "argument": {
+                "name": "cfg.outputfile  = ..."
+              }
+            }
+          ],
+          "editable": true,
+          "id": "a36388e7-5729-4a8a-b55e-ee5b116f4420",
+          "input": true,
+          "inputPort": "5195dc0a-35e4-46ee-9bc1-f4934b05417b",
+          "name": "outputfile",
+          "output": true,
+          "outputPort": "98a1e5d4-f954-4a5e-80ca-2b73b02d6efa",
+          "value": "",
+          "visible": true,
+          "iterator": false
+        }
+      ],
+      "position": [
+        314.1875,
+        278.375
+      ],
+      "code": [
+        {
+          "language": "fieldtrip",
+          "argument": {
+            "name": "cfg.outputfile  = ..."
+          }
+        }
+      ],
+      "web_url": "https://github.com/fieldtrip/fieldtrip/tree/master/ft_anonymizedata.m",
+      "colour": "#BBB"
+    }
+  ],
+  "stickies": [],
+  "version": "v1"
+}
