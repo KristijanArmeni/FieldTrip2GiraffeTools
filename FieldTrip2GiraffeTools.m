@@ -96,7 +96,7 @@ ft.name = categoryName;
 ft.nodes = nodes;
 
 %%
-f = fopen(fullfile(saveLocation, 'fieldtrip-test.JSON'), 'w');
+f = fopen(fullfile(saveLocation, 'fieldtrip.JSON'), 'w');
 options.ParseLogical = true;
 % options.Compact = true;
 fwrite(f, savejson('toolboxes', {ft}, options));
