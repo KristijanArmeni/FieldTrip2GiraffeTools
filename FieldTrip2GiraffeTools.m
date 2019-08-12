@@ -45,6 +45,8 @@ for j = 1:length(filenames)
         
             % look for any text between 'function' and '=' sign
             code.argout.name = regexp(line, '(?<=function.)(.*)(?=.=)', 'match');
+            code.argout.name = code.argout.name{1}; % write as char vector
+            
             if ~isempty(code.argout.name)
                 code.argout.exist = true;
                 %outputArg{1}(regexp(outputArg{1}, '[\[,\]]')) = []; % remove '[' and ']'
@@ -52,6 +54,7 @@ for j = 1:length(filenames)
         
             % parse the call syntax
             code.call = regexp(line, '(?<=.=.)(.*)', 'match');
+            code.call = code.call{1};  % write as char vector, not cell
             
         end
         
