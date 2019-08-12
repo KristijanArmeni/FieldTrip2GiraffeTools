@@ -23,10 +23,11 @@ for j = 1:length(filenames)
     f = fopen(file);
     numberOfPorts = 0;
     ports = [];
-    
     lineCount = 0;
     
-    code = [];
+    code = [];      % initialize output structure that goes in node.code
+    code.call = []; % for storing call syntax
+    
     while true
         
         % write parsed code elements in this var
@@ -43,14 +44,14 @@ for j = 1:length(filenames)
         if lineCount == 1 && ~isempty(regexp(line, 'function.*=', 'once'))
         
             % look for any text between 'function' and '=' sign
-            outputArg = regexp(line, '(?<=function.)(.*)(?=.=)', 'match');
-            if ~isempty(outputArg)
-                hasOutput = true;
+            code.argout.name = regexp(line, '(?<=function.)(.*)(?=.=)', 'match');
+            if ~isempty(code.argout.name)
+                code.argout.exist = true;
                 %outputArg{1}(regexp(outputArg{1}, '[\[,\]]')) = []; % remove '[' and ']'
             end
         
-            code.argout.exist = hasOutput;
-            code.argout.name = outputArg;
+            % parse the call syntax
+            code.call = regexp(line, '(?<=.=.)(.*)', 'match');
             
         end
         
@@ -77,7 +78,6 @@ for j = 1:length(filenames)
         
         
     end
-    % fprintf('\n%d Found %s output argument for %s', lineCount, outputArg{1}, filenames(j).name(1:end - 2))
 
     fclose(f);
     node.toolbox = categoryName;
