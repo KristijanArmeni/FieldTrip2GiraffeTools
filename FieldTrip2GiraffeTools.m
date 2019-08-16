@@ -73,13 +73,15 @@ for j = 1:length(filenames)
              ports(numberOfPorts).name = parameter{1};
             
              comment = regexp(line, '(?<=.*=.)(.*)', 'match');
-             code.cfgfield.name = parameter{1};
+             portCode = [];
+             portCode.language = categoryName;
+             portCode.name = parameter{1};
              if isempty(comment)
-                code.cfgfield.comment = '';
+                portCode.comment = '';
              else
-                code.cfgfield.comment = comment{1};
+                portCode.comment = comment{1};
              end
-             ports(numberOfPorts).code = {code};
+             ports(numberOfPorts).code = {portCode};
         end
         
         
