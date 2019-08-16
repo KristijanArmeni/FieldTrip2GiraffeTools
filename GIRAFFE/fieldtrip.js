@@ -7,7 +7,7 @@ module.exports = () => {
     }
 
     function parameterToCode(parameter){
-      return `cfg.${parameter.name} = ${parameter.value};` + newline;
+      return `cfg.${parameter.code.name} = ${parameter.value} % ${parameter.code.comment};` + newline;
     }
 
     function itemToCode(node){
@@ -18,7 +18,7 @@ module.exports = () => {
         .filter(parameter => parameter.value !== undefined && parameter.value !== "")
         .map(parameter => parameterToCode(parameter))
         .join("");
-      code += `${node.name}(cfg);` + newline;
+      code += `${node.code.argout} = ${node.code.call};` + newline;
 
       return code;
     }

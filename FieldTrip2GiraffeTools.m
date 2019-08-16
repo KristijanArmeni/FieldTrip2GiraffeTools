@@ -44,14 +44,11 @@ for j = 1:length(filenames)
         if lineCount == 1 && ~isempty(regexp(line, 'function.*=', 'once'))
         
             % look for any text between 'function' and '=' sign
-            code.argout.name = regexp(line, '(?<=function.)(.*)(?=.=)', 'match');
-            code.argout.name = code.argout.name{1}; % write as char vector
-            
-            if ~isempty(code.argout.name)
-                code.argout.exist = true;
-                %outputArg{1}(regexp(outputArg{1}, '[\[,\]]')) = []; % remove '[' and ']'
+            match = regexp(line, '(?<=function.)(.*)(?=.=)', 'match');
+            if ~isempty(match)
+                code.argout = match{1}; % write as char vector
             end
-        
+            
             % parse the call syntax
             code.call = regexp(line, '(?<=.=.)(.*)', 'match');
             code.call = code.call{1};  % write as char vector, not cell
@@ -75,7 +72,13 @@ for j = 1:length(filenames)
              [parameter, comment] = deal(parsed{:});
              ports(numberOfPorts).name = parameter{1};
             
-             code.cfgfields.name = line(5:end);
+             comment = regexp(line, '(?<=.*=.)(.*)', 'match');
+             code.cfgfield.name = parameter{1};
+             if isempty(comment)
+                code.cfgfield.comment = '';
+             else
+                code.cfgfield.comment = comment{1};
+             end
              ports(numberOfPorts).code = {code};
         end
         
