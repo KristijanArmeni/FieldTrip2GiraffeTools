@@ -53,6 +53,16 @@ for j = 1:length(filenames)
             code.call = regexp(line, '(?<=.=.)(.*)', 'match');
             code.call = code.call{1};  % write as char vector, not cell
             
+            % TODO: parse 'call' for input arguments
+            % Add a visible input port for each
+%             for arg = inputargs
+%                  numberOfPorts = numberOfPorts + 1;
+%                  ports(numberOfPorts).input = true;
+%                  ports(numberOfPorts).output = false;
+%                  ports(numberOfPorts).visible = true;
+%                  ports(numberOfPorts).editable = true;
+%                  ports(numberOfPorts).code = {portCode};
+%             end
         end
         
         if strfind(line, '%') ~= 1
@@ -62,8 +72,8 @@ for j = 1:length(filenames)
             
              numberOfPorts = numberOfPorts + 1;
              ports(numberOfPorts).input = true;
-             ports(numberOfPorts).output = true;
-             ports(numberOfPorts).visible = true;
+             ports(numberOfPorts).output = false;
+             ports(numberOfPorts).visible = false;
              ports(numberOfPorts).editable = true;
             
              % parse the parameter option string
@@ -84,6 +94,16 @@ for j = 1:length(filenames)
              ports(numberOfPorts).code = {portCode};
         end
         
+        % TODO: parse 'argout' for output arguments
+        % Add a visible output port for each
+%         for arg = outputargs
+%              numberOfPorts = numberOfPorts + 1;
+%              ports(numberOfPorts).input = false;
+%              ports(numberOfPorts).output = true;
+%              ports(numberOfPorts).visible = true;
+%              ports(numberOfPorts).editable = true;
+%              ports(numberOfPorts).code = {portCode};
+%         end
         
     end
 
