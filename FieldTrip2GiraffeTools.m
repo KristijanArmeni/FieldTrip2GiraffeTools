@@ -44,18 +44,25 @@ for j = 1:length(filenames)
         if lineCount == 1 && ~isempty(regexp(line, 'function.*=', 'once'))
         
             % look for any text between 'function' and '=' sign
-            code.argout.name = regexp(line, '(?<=function.)(.*)(?=.=)', 'match');
-            code.argout.name = code.argout.name{1}; % write as char vector
-            
-            if ~isempty(code.argout.name)
-                code.argout.exist = true;
-                %outputArg{1}(regexp(outputArg{1}, '[\[,\]]')) = []; % remove '[' and ']'
+            match = regexp(line, '(?<=function.)(.*)(?=.=)', 'match');
+            if ~isempty(match)
+                code.argout = match{1}; % write as char vector
             end
-        
+            
             % parse the call syntax
             code.call = regexp(line, '(?<=.=.)(.*)', 'match');
             code.call = code.call{1};  % write as char vector, not cell
             
+            % TODO: parse 'call' for input arguments
+            % Add a visible input port for each
+%             for arg = inputargs
+%                  numberOfPorts = numberOfPorts + 1;
+%                  ports(numberOfPorts).input = true;
+%                  ports(numberOfPorts).output = false;
+%                  ports(numberOfPorts).visible = true;
+%                  ports(numberOfPorts).editable = true;
+%                  ports(numberOfPorts).code = {portCode};
+%             end
         end
         
         if strfind(line, '%') ~= 1
@@ -65,8 +72,8 @@ for j = 1:length(filenames)
             
              numberOfPorts = numberOfPorts + 1;
              ports(numberOfPorts).input = true;
-             ports(numberOfPorts).output = true;
-             ports(numberOfPorts).visible = true;
+             ports(numberOfPorts).output = false;
+             ports(numberOfPorts).visible = false;
              ports(numberOfPorts).editable = true;
             
              % parse the parameter option string
@@ -75,10 +82,28 @@ for j = 1:length(filenames)
              [parameter, comment] = deal(parsed{:});
              ports(numberOfPorts).name = parameter{1};
             
-             code.cfgfields.name = line(5:end);
-             ports(numberOfPorts).code = {code};
+             comment = regexp(line, '(?<=.*=.)(.*)', 'match');
+             portCode = [];
+             portCode.language = categoryName;
+             portCode.name = parameter{1};
+             if isempty(comment)
+                portCode.comment = '';
+             else
+                portCode.comment = comment{1};
+             end
+             ports(numberOfPorts).code = {portCode};
         end
         
+        % TODO: parse 'argout' for output arguments
+        % Add a visible output port for each
+%         for arg = outputargs
+%              numberOfPorts = numberOfPorts + 1;
+%              ports(numberOfPorts).input = false;
+%              ports(numberOfPorts).output = true;
+%              ports(numberOfPorts).visible = true;
+%              ports(numberOfPorts).editable = true;
+%              ports(numberOfPorts).code = {portCode};
+%         end
         
     end
 
